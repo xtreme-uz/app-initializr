@@ -1,5 +1,7 @@
 package uz.xtreme.defaultstarter.service;
 
-public interface RoleService {
+import uz.xtreme.defaultstarter.entity.Role;
+
+public interface RoleService extends AbstractService<Role> {
 
 }

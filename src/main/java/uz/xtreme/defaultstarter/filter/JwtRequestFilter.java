@@ -12,11 +12,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import uz.xtreme.defaultstarter.service.CustomUserDetailsService;
 import uz.xtreme.defaultstarter.util.JwtUtil;
 
+@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
 	private final CustomUserDetailsService userDetailsService;

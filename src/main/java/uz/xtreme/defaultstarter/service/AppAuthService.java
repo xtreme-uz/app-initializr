@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import uz.xtreme.defaultstarter.model.DataResponse;
 import uz.xtreme.defaultstarter.model.auth.AuthenticationRequest;
 
-public interface AuthenticationService {
+public interface AppAuthService {
 
 	ResponseEntity<DataResponse> authentication(AuthenticationRequest request);
 

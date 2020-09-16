@@ -15,17 +15,19 @@ import uz.xtreme.defaultstarter.repository.AuthUserRepository;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	private final AuthUserRepository repository;
-	
-    public CustomUserDetailsService(AuthUserRepository repository) {
+
+	public CustomUserDetailsService(AuthUserRepository repository) {
 		super();
 		this.repository = repository;
 	}
 
 	@Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<AuthUser> user = repository.findByUsername(s);
-        user.orElseThrow(() -> new UsernameNotFoundException("USER_NOT_FOUND"));
-        return user.map(AuthUserDetail::new).get();
-    }
+	public UserDetails loadUserByUsername(String s) {
+		Optional<AuthUser> user = repository.findByUsername(s);
+		if (user.isPresent())
+			return new AuthUserDetail(user.get());
+		else
+			throw new UsernameNotFoundException("USER_NOT_FOUND");
+	}
 
 }

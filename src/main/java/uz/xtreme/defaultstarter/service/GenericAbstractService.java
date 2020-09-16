@@ -1,0 +1,32 @@
+package uz.xtreme.defaultstarter.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public abstract class GenericAbstractService<T, R extends JpaRepository<T, Long> > implements AbstractService<T> {
+
+	protected final R repository;
+	
+	public GenericAbstractService(R repository) {
+		super();
+		this.repository = repository;
+	}
+
+	@Override
+	public T getById(long id) {
+		Optional<T> entity = repository.findById(id);
+		if (entity.isPresent())
+			return entity.get();
+		else
+			//TODO ObjectNotFoundException
+			throw new RuntimeException("PERMISSION_NOT_FOUND");
+	}
+
+	@Override
+	public List<T> getAll() {
+		return repository.findAll();
+	}
+
+}

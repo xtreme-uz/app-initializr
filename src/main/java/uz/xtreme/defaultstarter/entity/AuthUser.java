@@ -1,6 +1,7 @@
 package uz.xtreme.defaultstarter.entity;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,10 +33,11 @@ public class AuthUser extends BaseEntity {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles;
 
-	public AuthUser(String username, String password) {
+	public AuthUser(String username, String password, List<Role> roles) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.roles = roles;
 	}
 
 }

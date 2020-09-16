@@ -1,28 +1,27 @@
 package uz.xtreme.defaultstarter.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uz.xtreme.defaultstarter.model.DataResponse;
 import uz.xtreme.defaultstarter.model.auth.AuthenticationRequest;
-import uz.xtreme.defaultstarter.service.AuthenticationService;
+import uz.xtreme.defaultstarter.service.AppAuthService;
 
 @RestController
 @RequestMapping("/api/v1.0")
 public class AuthenticationController {
 
-	private final AuthenticationService service;
+	private final AppAuthService service;
 	
-    public AuthenticationController(AuthenticationService service) {
+    public AuthenticationController(AppAuthService service) {
 		super();
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/token", method = POST)
+	@PostMapping(value = "/token")
     public ResponseEntity<DataResponse> createAuthenticationToken(@RequestBody AuthenticationRequest request) {
         return service.authentication(request);
     }

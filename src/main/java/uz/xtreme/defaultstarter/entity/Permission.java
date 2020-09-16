@@ -26,4 +26,10 @@ public class Permission extends BaseEntity {
 	@ManyToMany(mappedBy = "permissions")
 	private Collection<Role> roles;
 
+	public Permission(String permissionName, String permissionInfo) {
+		super();
+		this.permissionName = permissionName;
+		this.permissionInfo = permissionInfo;
+	}
+
 }

@@ -1,7 +1,6 @@
 package uz.xtreme.defaultstarter.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -10,32 +9,26 @@ import uz.xtreme.defaultstarter.entity.AuthUser;
 import uz.xtreme.defaultstarter.repository.AuthUserRepository;
 
 @Service
-public class AuthUserServiceImpl implements AuthUserService {
-	
-	private final AuthUserRepository repository;
+public class AuthUserServiceImpl extends GenericAbstractService<AuthUser, AuthUserRepository> implements AuthUserService {
 	
 	public AuthUserServiceImpl(AuthUserRepository repository) {
-		super();
-		this.repository = repository;
+		super(repository);
+	}
+	
+	@Override
+	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_READ.name())")
+	public AuthUser getById(long id) {
+		return super.getById(id);
 	}
 
 	@Override
-	public AuthUser getById(long id) {
-		Optional<AuthUser> entity = repository.findById(id);
-		if (entity.isPresent())
-			return entity.get();
-		else
-			throw new RuntimeException("USER_NOT_FOUND");
-	}
-	
-	@Override
-	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_READ)")
+	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_READ.name())")
 	public List<AuthUser> getAll() {
-		return repository.findAll();
+		return super.getAll();
 	}
-	
+
 	@Override
-	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_CREATE)")
+	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_CREATE.name())")
 	public AuthUser save(AuthUser entity) {
 		return repository.save(entity);
 	}

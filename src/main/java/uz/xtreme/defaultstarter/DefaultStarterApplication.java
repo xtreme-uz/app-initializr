@@ -9,5 +9,5 @@ public class DefaultStarterApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DefaultStarterApplication.class, args);
 	}
-
+	
 }

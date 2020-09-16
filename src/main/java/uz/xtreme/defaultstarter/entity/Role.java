@@ -33,4 +33,11 @@ public class Role extends BaseEntity {
 	@ManyToMany(mappedBy = "roles")
 	private Collection<AuthUser> users;
 
+	public Role(String roleName, String roleInfo, Collection<Permission> permissions) {
+		super();
+		this.roleName = roleName;
+		this.roleInfo = roleInfo;
+		this.permissions = permissions;
+	}
+
 }

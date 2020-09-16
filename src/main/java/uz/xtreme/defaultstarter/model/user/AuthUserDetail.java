@@ -1,8 +1,8 @@
 package uz.xtreme.defaultstarter.model.user;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,35 +19,30 @@ public class AuthUserDetail implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
-	private List<GrantedAuthority> authorities;
+	private Set<GrantedAuthority> authorities;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return authorities;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -58,15 +53,15 @@ public class AuthUserDetail implements UserDetails {
 		this.authorities = collectAuthorities(user);
 	}
 
-	private List<GrantedAuthority> collectAuthorities(AuthUser user) {
-		List<GrantedAuthority> authorities = new ArrayList<>();
+	private Set<GrantedAuthority> collectAuthorities(AuthUser user) {
+		Set<GrantedAuthority> authoritySet = new HashSet<>();
 		user.getRoles().forEach(role -> {
-			authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+			authoritySet.add(new SimpleGrantedAuthority(role.getRoleName()));
 			role.getPermissions().forEach(permission -> {
-				authorities.add(new SimpleGrantedAuthority(permission.getPermissionName()));
+				authoritySet.add(new SimpleGrantedAuthority(permission.getPermissionName()));
 			});
 		});
-		return authorities;
+		return authoritySet;
 	}
 
 }
