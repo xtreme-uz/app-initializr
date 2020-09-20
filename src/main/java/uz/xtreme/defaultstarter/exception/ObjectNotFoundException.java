@@ -10,17 +10,11 @@ import lombok.Getter;
 public class ObjectNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
-	private String userMessage;
-	private String appMessage;
+	private final String appMessage;
 
 	public ObjectNotFoundException(String appMessage) {
 		super(appMessage);
 		this.appMessage = appMessage;
-		initMessage();
-	}
-
-	private void initMessage() {
-		this.userMessage = appMessage;
 	}
 
 }

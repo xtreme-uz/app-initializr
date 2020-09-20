@@ -6,4 +6,6 @@ public interface AuthUserService extends AbstractService<AuthUser> {
 
 	AuthUser save(AuthUser entity);
 
+	boolean isUsernameExist(String username);
+
 }

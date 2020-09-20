@@ -1,5 +1,7 @@
 package uz.xtreme.defaultstarter.model;
 
+import java.util.Collections;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,14 @@ public class DataResponse {
 		this.message = "SUCCESS";
 		this.data = data;
 	}
+
+	public DataResponse(boolean success, String message) {
+		super();
+		this.success = success;
+		this.message = message;
+		this.data = Collections.emptyMap();
+	}
+	
+	
 
 }

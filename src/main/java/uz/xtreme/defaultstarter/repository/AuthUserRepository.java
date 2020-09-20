@@ -10,4 +10,5 @@ import uz.xtreme.defaultstarter.entity.AuthUser;
 @Repository
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long> {
 	Optional<AuthUser> findByUsername(String username);
+	boolean existsByUsername(String username);
 }

@@ -1,6 +1,7 @@
 package uz.xtreme.defaultstarter.entity;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,6 +39,13 @@ public class AuthUser extends BaseEntity {
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
+	}
+
+	public AuthUser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.roles = Collections.emptyList();
 	}
 
 }

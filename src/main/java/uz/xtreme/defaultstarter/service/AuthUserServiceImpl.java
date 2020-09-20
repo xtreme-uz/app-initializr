@@ -32,5 +32,10 @@ public class AuthUserServiceImpl extends GenericAbstractService<AuthUser, AuthUs
 	public AuthUser save(AuthUser entity) {
 		return repository.save(entity);
 	}
+	
+	@Override
+	public boolean isUsernameExist(String username) {
+		return repository.existsByUsername(username);
+	}
 
 }

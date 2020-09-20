@@ -2,7 +2,6 @@ package uz.xtreme.defaultstarter.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,7 +15,7 @@ import uz.xtreme.defaultstarter.filter.JwtRequestFilter;
 import uz.xtreme.defaultstarter.service.CustomUserDetailsService;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
 	private final CustomUserDetailsService userDetailsService;
@@ -35,8 +34,8 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/", "/**/token").permitAll().anyRequest().authenticated()
-				.and().exceptionHandling().and().sessionManagement()
+		http.csrf().disable().authorizeRequests().antMatchers("/", "/**/registration", "/**/token").permitAll()
+				.anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}

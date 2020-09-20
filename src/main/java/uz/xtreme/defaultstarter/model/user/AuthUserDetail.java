@@ -57,9 +57,7 @@ public class AuthUserDetail implements UserDetails {
 		Set<GrantedAuthority> authoritySet = new HashSet<>();
 		user.getRoles().forEach(role -> {
 			authoritySet.add(new SimpleGrantedAuthority(role.getRoleName()));
-			role.getPermissions().forEach(permission -> {
-				authoritySet.add(new SimpleGrantedAuthority(permission.getPermissionName()));
-			});
+			role.getPermissions().forEach(permission -> authoritySet.add(new SimpleGrantedAuthority(permission.getPermissionName())));
 		});
 		return authoritySet;
 	}

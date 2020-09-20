@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class GenericAbstractService<T, R extends JpaRepository<T, Long> > implements AbstractService<T> {
+import uz.xtreme.defaultstarter.exception.ObjectNotFoundException;
+
+public abstract class GenericAbstractService<T, R extends JpaRepository<T, Long>> implements AbstractService<T> {
 
 	protected final R repository;
-	
+
 	public GenericAbstractService(R repository) {
 		super();
 		this.repository = repository;
@@ -20,8 +22,7 @@ public abstract class GenericAbstractService<T, R extends JpaRepository<T, Long>
 		if (entity.isPresent())
 			return entity.get();
 		else
-			//TODO ObjectNotFoundException
-			throw new RuntimeException("PERMISSION_NOT_FOUND");
+			throw new ObjectNotFoundException("PERMISSION_NOT_FOUND");
 	}
 
 	@Override
