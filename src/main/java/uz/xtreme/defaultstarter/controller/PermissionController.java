@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uz.xtreme.defaultstarter.entity.Permission;
 import uz.xtreme.defaultstarter.model.DataResponse;
-import uz.xtreme.defaultstarter.service.PermissionService;
+import uz.xtreme.defaultstarter.service.auth.PermissionService;
 
 @RestController
 @RequestMapping("/api/v1.0/permissions")

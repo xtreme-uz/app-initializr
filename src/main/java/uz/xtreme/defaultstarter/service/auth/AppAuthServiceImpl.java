@@ -1,4 +1,4 @@
-package uz.xtreme.defaultstarter.service;
+package uz.xtreme.defaultstarter.service.auth;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +12,7 @@ import uz.xtreme.defaultstarter.model.DataResponse;
 import uz.xtreme.defaultstarter.model.auth.AuthenticationRequest;
 import uz.xtreme.defaultstarter.model.auth.AuthenticationResponse;
 import uz.xtreme.defaultstarter.model.auth.RegistrationRequest;
+import uz.xtreme.defaultstarter.service.CustomUserDetailsService;
 import uz.xtreme.defaultstarter.util.JwtUtil;
 
 @Service

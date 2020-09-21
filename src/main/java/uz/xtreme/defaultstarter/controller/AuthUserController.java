@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uz.xtreme.defaultstarter.entity.AuthUser;
 import uz.xtreme.defaultstarter.model.DataResponse;
-import uz.xtreme.defaultstarter.service.AuthUserService;
+import uz.xtreme.defaultstarter.service.auth.AuthUserService;
 
 @RestController
 @RequestMapping("/api/v1.0/users")

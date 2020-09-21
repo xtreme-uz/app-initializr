@@ -1,4 +1,4 @@
-package uz.xtreme.defaultstarter.service;
+package uz.xtreme.defaultstarter.service.auth;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import uz.xtreme.defaultstarter.entity.AuthUser;
 import uz.xtreme.defaultstarter.repository.AuthUserRepository;
+import uz.xtreme.defaultstarter.service.GenericAbstractService;
 
 @Service
 public class AuthUserServiceImpl extends GenericAbstractService<AuthUser, AuthUserRepository> implements AuthUserService {
@@ -30,9 +31,15 @@ public class AuthUserServiceImpl extends GenericAbstractService<AuthUser, AuthUs
 	@Override
 	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_CREATE.name())")
 	public AuthUser save(AuthUser entity) {
-		return repository.save(entity);
+		return super.save(entity);
 	}
 	
+	@Override
+	@PreAuthorize("hasRole(T(uz.xtreme.defaultstarter.util.Permission).USER_DELETE.name())")
+	public void deleteById(long id) {
+		super.deleteById(id);
+	}
+
 	@Override
 	public boolean isUsernameExist(String username) {
 		return repository.existsByUsername(username);

@@ -30,4 +30,14 @@ public abstract class GenericAbstractService<T, R extends JpaRepository<T, Long>
 		return repository.findAll();
 	}
 
+	@Override
+	public T save(T entity) {
+		return repository.save(entity);
+	}
+
+	@Override
+	public void deleteById(long id) {
+		repository.deleteById(id);
+	}
+
 }

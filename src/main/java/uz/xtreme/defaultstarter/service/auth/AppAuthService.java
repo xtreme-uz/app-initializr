@@ -1,4 +1,4 @@
-package uz.xtreme.defaultstarter.service;
+package uz.xtreme.defaultstarter.service.auth;
 
 import org.springframework.http.ResponseEntity;
 

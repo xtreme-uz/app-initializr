@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.xtreme.defaultstarter.model.DataResponse;
 import uz.xtreme.defaultstarter.model.auth.AuthenticationRequest;
 import uz.xtreme.defaultstarter.model.auth.RegistrationRequest;
-import uz.xtreme.defaultstarter.service.AppAuthService;
+import uz.xtreme.defaultstarter.service.auth.AppAuthService;
 
 @RestController
 @RequestMapping("/api/v1.0")

@@ -1,10 +1,9 @@
-package uz.xtreme.defaultstarter.service;
+package uz.xtreme.defaultstarter.service.auth;
 
 import uz.xtreme.defaultstarter.entity.AuthUser;
+import uz.xtreme.defaultstarter.service.AbstractService;
 
 public interface AuthUserService extends AbstractService<AuthUser> {
-
-	AuthUser save(AuthUser entity);
 
 	boolean isUsernameExist(String username);
 
