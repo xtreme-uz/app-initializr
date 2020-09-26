@@ -1,0 +1,60 @@
+:doctype: person
+:icons: font
+:source-highlighter: highlightjs
+:toc: right
+:toclevels: 4
+:sectlinks:
+
+= Description of service
+
+[introduction]
+== Introduction
+
+TODO introduction
+
+[[example-table]]
+== Document types
+
+TODO table description
+
+|===
+| Code | Usage
+
+| `101`
+| Payment order
+
+| `102`
+| Online payment order 24/7
+
+| `103`
+| Payment order PC top-up
+
+| `104`
+| Payment order treasury
+
+| `105`
+| Payment order budget
+
+|===
+
+[[system-auth]]
+== Authentication
+
+The authentication endpoint returns bearer token
+
+[[auth-get-token-example]]
+=== Request for token
+
+ A `POST` request with json body will return a token
+
+==== _example request:_
+
+include::{snippets}/get-token/curl-request.adoc[]
+
+or
+
+include::{snippets}/get-token/http-request.adoc[]
+
+==== _example response:_
+
+include::{snippets}/get-token/http-response.adoc[]
