@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.google.gson.Gson;
 
 import uz.xtreme.defaultstarter.model.auth.AuthenticationRequest;
+import uz.xtreme.defaultstarter.model.auth.RegistrationRequest;
 
 @SpringBootTest
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -36,11 +38,28 @@ class AuthenticationControllerTest {
                 .build();
         this.gson = new Gson();
     }
+    
+    @Test
+    void registrationShouldRetirnOk() throws Exception {
+        RegistrationRequest body = RegistrationRequest.builder()
+                .username("foo").password("foo").build();
+        this.mockMvc.perform(RestDocumentationRequestBuilders.post("/api/v1.0/registration")
+                .content(gson.toJson(body))
+                .contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andDo(document("registration"));
+    }
 
     @Test
     void getTokenShouldReturnOk() throws Exception {
         AuthenticationRequest body = AuthenticationRequest.builder()
                 .username("foo").password("foo").build();
+        this.mockMvc.perform(RestDocumentationRequestBuilders.post("/api/v1.0/registration")
+                .content(gson.toJson(body))
+                .contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"));
         this.mockMvc.perform(RestDocumentationRequestBuilders.post("/api/v1.0/token")
                 .content(gson.toJson(body))
                 .contentType("application/json"))
